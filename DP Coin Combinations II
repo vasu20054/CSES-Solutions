@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long 
+#define pb push_back
+#define dst(v) sort(v.begin(),v.end(),greater<long long>())
+#define ast(v) sort(v.begin(),v.end());
+#define vi vector<int>
+#define vvi vector<vector<int>>
+#define pi pair<int,int> 
+#define vvpi vector<vector<pair<int,int>>>
+#define input(vec,n) for(int i=0;i<n;i++) cin>>vec[i];
+void print(vi a){
+    for(auto it:a) cout<<(it)<<" ";
+    cout<<endl;
+}      
+ 
+/*CODE*/
+int mod=1e9+7;
+void Solve(){
+    int n,x; cin>>n>>x;
+    vi v(n); input(v,n);
+    vector<int> dp(x+1,0);
+    dp[0]=1;
+    for(int i=0;i<n;i++){
+        for(int j=v[i];j<=x;j++){
+            dp[j]+=dp[j-v[i]];
+            dp[j]=dp[j]%M;
+        }
+    }
+    cout<<dp[x]<<endl;
+}
+ 
+signed main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int t;t=1;
+    while(t--) Solve();
+}
